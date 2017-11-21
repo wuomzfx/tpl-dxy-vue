@@ -63,7 +63,7 @@ module.exports = {
     assetsDxyPath: `https://assets.dxycdn.com/gitrepo/${pkg.name}/dist/`,
 
     // Assets version mode
-    assetsVersionMode: '{{$assetVersion}}', // version control by server
+    assetsVersionMode: '\{{$assetVersion}}', // version control by server
     // assetsVersionMode: +new Date(), // timestamp version
     // assetsVersionMode: 'hash', // hash version
 
