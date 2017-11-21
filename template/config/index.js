@@ -7,11 +7,14 @@ const pkg = require('../package.json')
 
 module.exports = {
   dev: {
+    // Assets version mode
+    assetsVersionMode: 'hash', // hash version
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},
+
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -58,6 +61,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     assetsDxyPath: `https://assets.dxycdn.com/gitrepo/${pkg.name}/dist/`,
+
+    // Assets version mode
+    assetsVersionMode: '{{$assetVersion}}', // version control by server
+    // assetsVersionMode: +new Date(), // timestamp version
+    // assetsVersionMode: 'hash', // hash version
 
     /**
      * Source Maps

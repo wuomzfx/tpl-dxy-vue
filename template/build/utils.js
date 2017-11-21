@@ -4,10 +4,13 @@ const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const pkg = require('../package.json')
 
-exports.assetsPath = function (_path) {
-  const assetsSubDirectory = process.env.NODE_ENV === 'production'
-    ? config.build.assetsSubDirectory
-    : config.dev.assetsSubDirectory
+exports.assetsPath = function (_path, innerHtml) {
+  const envConfig = process.env.NODE_ENV === 'production' ? config.build : config.dev
+  const assetsSubDirectory = envConfig.assetsSubDirectory
+  if (innerHtml && envConfig.assetsVersionMode !== 'hash') {
+    _path = _path.split('.').filter(p => p.indexOf('[hash') === -1 && p.indexOf('hash]') === -1).join('.')
+    _path += `?v=${envConfig.assetsVersionMode}`
+  }
   return path.posix.join(assetsSubDirectory, _path)
 }
 
